@@ -1,6 +1,8 @@
 <?php
 namespace Xignify;
 
+define("__ROOT__", __DIR__);
+
 $loader = require "vendor/autoload.php";
 
 switch( $args[0] ) {
