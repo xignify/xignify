@@ -2,8 +2,10 @@
 namespace Xignify;
 
 define("__ROOT__", __DIR__);
+define("__DEBUG__", true);
 
 $loader = require "vendor/autoload.php";
+
 
 switch( $args[0] ) {
 	case "." :

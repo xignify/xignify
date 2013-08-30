@@ -3,16 +3,23 @@ namespace Xignify;
 
 class View {
 
+	static private $config = array();
+
+	static public function setConfig( $name, $value ) {
+		self::$config[$name] = $value;
+	}
 	static public function load( $name ) {
 		static $ins;
 
 		if ( !isset($ins[$name]) ) { $ins[$name] = new $name; }
 		return $ins[$name];
-
 	}
 
+	//>deprecated
 	static public function html( $url ) {
 		static $contents;
+
+		d("this function is deprecated!, use render()");
 
 		$args = func_get_args();
 
@@ -29,6 +36,32 @@ class View {
 
 		}
 		eval("?>".$contents[$url]);
+	}
+
+	static public function render( $filepath ) {
+
+		isset( self::$config['template_path'] ) or self::$config['template_path'] = __ROOT__.'/template/';
+
+		$args = func_get_args();
+
+		for( $i = 1; $i < count($args); $i++ ) {
+			if ( !is_array($args[$i]) ) throw new \InvalidArgumentException("No Array!");
+			extract( $args[$i] );
+		}
+		
+		$path = self::$config['template_path'].$filepath;
+		
+		if ( !file_exists($path) ) throw new \Xignify\Exception\FileNotFoundException("\"{$path}\" there is no file!");
+
+		ob_start();
+
+		include $path;
+
+		$buffer = ob_get_contents();
+		ob_end_clean();		
+
+		return $buffer;
+
 	}
 
 	static public function css() {

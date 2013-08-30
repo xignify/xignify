@@ -30,6 +30,11 @@ class ControllerFactory {
 	}
 
 	private function runMethod() {
+
+		if ( method_exists($this->instance, "__render") ) {
+			ob_start();
+		}
+
 		if ( method_exists($this->instance, "__init") ) {
 			$this->instance->__init();
 		}
@@ -56,7 +61,12 @@ class ControllerFactory {
 				$this->instance->__error();
 				exit;
 			}
-		}		
+		}
+		if ( method_exists($this->instance, "__render") ) {
+			$buffer = ob_get_contents();
+			ob_end_clean();
+			echo $this->instance->__render( $buffer );
+		}
 	}
 
 

@@ -1,0 +1,43 @@
+<?php
+isset($title) or $title = "Xignify Default Title";
+isset($description) or $description = "Xignify Description";
+isset($css_files) or $css_files = "";
+?>
+<!DOCTYPE HTML>
+<!--//
+This web page has been developed by Wani.
+ - me@wani.kr
+ - http://wani.kr
+-->
+<html lang="ko">
+<head>
+
+<title><?php echo $title?></title>
+<meta charset="utf-8" />
+
+<meta name="author" content="XIGNIFY" />
+
+<meta name="description" content="<?php echo $description?>" />
+
+<meta property="og:title" content="<?php echo $title?>" />
+<meta property="og:description" content="<?php echo $description?>" />
+
+<meta property="og:image" content="<?php echo HOME?>/library/icon/logo-fb.jpg" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<link rel="shortcut icon" href="<?php echo HOME?>/library/icon/icon32.png" />
+
+<link rel="apple-touch-icon" href="<?php echo HOME?>/library/icon/icon.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="<?php echo HOME?>/library/icon/icon144.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="<?php echo HOME?>/library/icon/icon114.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="<?php echo HOME?>/library/icon/icon72.png" />
+
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<?=$css_files?>
+
+</head>
+<body>

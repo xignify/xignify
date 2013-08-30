@@ -7,6 +7,13 @@ class FrontPage extends \Xignify\Controller {
 
 		echo "Hello World :D";
 
+	}
+	public function __render( $output ) {
+		$ret = \Xignify\View::render( "header.html");
+		$ret .= $output;
+		$ret .= \Xignify\View::render( "footer.html");
+
+		return $ret;
 
 	}
 
